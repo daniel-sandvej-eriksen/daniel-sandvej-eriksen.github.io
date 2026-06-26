@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ===== Skift titlen i browser-fanen her ===== -->
+<title>Daniel Sandvej Eriksen</title>
+
+<!-- Programmer-skrifttype (JetBrains Mono). Kræver internet; falder ellers tilbage til systemets monospace. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+  /* =========================================================
+     TERMINAL / RETRO-CODER TEMA
+     Vil du skifte accentfarven (fosfor-grøn), så ret --accent.
+     Prøv fx amber: --accent:#ffb000;  --glow:rgba(255,176,0,.5);
+     ========================================================= */
+  :root{
+    --bg:#0a0e14;            /* næsten sort baggrund */
+    --panel:#0e131c;        /* lidt lysere paneler */
+    --text:#c7d0d9;         /* almindelig tekst */
+    --muted:#5f7080;        /* dæmpet/grålig */
+    --accent:#3ff396;       /* fosfor-grøn */
+    --accent-dim:#1f7d57;
+    --amber:#ffb454;        /* sekundær accent */
+    --line:#1b2430;
+    --glow:rgba(63,243,150,.35);
+    --maxwidth:780px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    color:var(--text);
+    background:var(--bg);
+    line-height:1.7;
+    font-size:15.5px;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* svage CRT-scanlines hen over hele siden */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:50;
+    background:repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,.022) 0px,
+      rgba(255,255,255,.022) 1px,
+      transparent 1px,
+      transparent 3px);
+    mix-blend-mode:overlay;
+  }
+  .wrap{max-width:var(--maxwidth);margin:0 auto;padding:0 24px;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;text-shadow:0 0 8px var(--glow);}
+
+  /* ---------- Topnavigation ---------- */
+  nav{
+    border-bottom:1px solid var(--line);
+    position:sticky;top:0;z-index:20;
+    background:rgba(10,14,20,.85);backdrop-filter:blur(8px);
+  }
+  nav .wrap{display:flex;gap:24px;align-items:center;height:58px;}
+  nav a{color:var(--muted);font-size:14px;font-weight:500;}
+  nav a::before{content:"";}
+  nav a:hover{color:var(--accent);}
+  nav .name{color:var(--accent);font-weight:700;margin-right:auto;text-shadow:0 0 10px var(--glow);}
+  nav .name::before{content:"~/ ";color:var(--muted);text-shadow:none;}
+
+  /* ---------- Header / intro ---------- */
+  header{padding:54px 0 34px;}
+  .intro{display:flex;gap:34px;align-items:flex-start;flex-wrap:wrap;}
+  .photo{
+    width:168px;height:168px;object-fit:cover;flex-shrink:0;
+    border:1px solid var(--accent-dim);
+    border-radius:6px;
+    filter:grayscale(.25) contrast(1.05);
+    box-shadow:0 0 0 1px var(--line),0 0 24px rgba(63,243,150,.12);
+  }
+  .intro h1{
+    font-size:30px;margin:0 0 4px;color:#e8eef3;font-weight:700;
+    text-shadow:0 0 14px rgba(63,243,150,.18);
+  }
+  .intro .role{color:var(--amber);font-size:15px;margin:0 0 18px;}
+  .intro .role::before{content:"// ";color:var(--muted);}
+  .intro p{margin:0 0 14px;}
+  .prompt{color:var(--accent);}  /* til $-tegn o.l. */
+
+  .links{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px;font-size:13.5px;}
+  .links a{
+    border:1px solid var(--line);border-radius:5px;padding:5px 11px;
+    color:var(--text);background:var(--panel);
+  }
+  .links a::before{content:"[ ";color:var(--accent);}
+  .links a::after{content:" ]";color:var(--accent);}
+  .links a:hover{border-color:var(--accent-dim);color:var(--accent);text-decoration:none;}
+
+  /* ---------- Sektioner ---------- */
+  section{padding:36px 0;border-top:1px solid var(--line);}
+  h2{
+    font-size:18px;margin:0 0 24px;color:#e8eef3;font-weight:700;
+  }
+  h3.subhead{
+    font-size:15.5px;letter-spacing:.04em;color:var(--amber);
+    margin:34px 0 16px;font-weight:500;
+  }
+  h3.subhead::before{content:"// ";color:var(--muted);}
+
+  /* ---------- Publikationer ---------- */
+  .pub{
+    margin:0 0 16px;padding:16px 18px;
+    background:var(--panel);border:1px solid var(--line);border-radius:7px;
+  }
+  .pub:hover{border-color:var(--accent-dim);}
+  .pub .ptitle{font-weight:500;color:#e8eef3;}
+  .pub .meta{color:var(--muted);font-size:13.5px;margin:5px 0 9px;}
+  .pub .meta em{font-style:italic;}
+  .pub .plinks{font-size:13px;margin-top:6px;display:flex;flex-wrap:wrap;gap:8px;}
+  .pub .plinks a{
+    border:1px solid var(--line);border-radius:4px;padding:2px 9px;color:var(--text);
+  }
+  .pub .plinks a::before{content:"› ";color:var(--accent);}
+  .pub .plinks a:hover{border-color:var(--accent-dim);color:var(--accent);text-decoration:none;}
+
+  /* udfoldeligt abstract */
+  details{margin-top:11px;}
+  details summary{
+    cursor:pointer;color:var(--accent);font-size:13px;
+    list-style:none;display:inline-block;user-select:none;
+  }
+  details summary::-webkit-details-marker{display:none;}
+  details summary::before{content:"▶ abstract";}
+  details[open] summary::before{content:"▼ abstract";}
+  details summary span{display:none;}
+  details .abstract{
+    margin-top:10px;font-size:14px;color:var(--text);
+    border-left:2px solid var(--accent-dim);padding:2px 0 2px 14px;
+    background:rgba(63,243,150,.03);
+  }
+
+  footer{padding:40px 0 60px;color:var(--muted);font-size:13px;text-align:center;}
+  footer .prompt{color:var(--accent);}
+
+  @media(max-width:560px){
+    .intro{flex-direction:column;align-items:flex-start;}
+    nav .wrap{gap:16px;}
+    nav .name{margin-right:0;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAVIGATION ============ -->
+<nav>
+  <div class="wrap">
+    <a href="#top" class="name">daniel-sandvej-eriksen</a>
+    <a href="#about">about</a>
+    <a href="#research">research</a>
+    <a href="#contact">contact</a>
+  </div>
+</nav>
+
+<div class="wrap" id="top">
+
+  <!-- ============ INTRO ============ -->
+  <header id="about">
+    <div class="intro">
+      <!-- Billedet ligger i samme mappe som profile.webp -->
+      <img class="photo" src="profile.webp" alt="Daniel Sandvej Eriksen">
+
+      <div>
+        <h1>Daniel Sandvej Eriksen</h1>
+        <p class="role">Assistant Professor · Department of Political Science, Aarhus University</p>
+
+        <!-- ===== Kort intro om dig — ret denne tekst ===== -->
+        <p>
+          My research interests lie primarily in political communication,
+          comparative politics, and public policy, with a particular focus on
+          party competition, agenda setting, and intra-party dynamics.
+        </p>
+        <p>
+          Methodologically, I primarily draw on computational social science, using
+          large-scale text and data to study how political parties and
+          politicians behave.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ RESEARCH ============ -->
+  <section id="research">
+    <h2>research</h2>
+
+    <!-- ---------- PUBLICATIONS ---------- -->
+    <h3 class="subhead">publications</h3>
+
+    <!-- ====== SÅDAN TILFØJER DU ET NYT PAPER: kopiér én hel <div class="pub">…</div>-blok og ret indholdet ====== -->
+    <div class="pub">
+      <div class="ptitle">Initiate and Elevate! How Political Parties Can Set an Agenda</div>
+      <div class="meta"><em>American Political Science Review</em>, 2026, 1–19.</div>
+      <div class="plinks">
+        <a href="https://doi.org/10.1017/S0003055426101506" target="_blank" rel="noopener">published version</a>
+      </div>
+      <details>
+        <summary></summary>
+        <div class="abstract">
+          The study of political agenda setting is a cornerstone in political science. Within this literature, political parties are implicitly portrayed as being capable of proactively initiating discussions. However, this fundamental notion of party agency deserves further theoretical and empirical attention. In response, this article crafts a new model (the Issue Initiation Model) that opens the window into parties' efforts to set an agenda and traces how they initiate and elevate their agenda. The model is tested on an original dataset covering more than 5.5-million tweets by political parties and MPs, coupled with over 750,000 news articles and 419,000 parliamentary questions in the United Kingdom and Denmark from 2015 to 2022. Results show how parties and their MPs can proactively redirect the attention of other actors through strategic planning and orchestrated actions. By theorizing and empirically testing the implicit notion that parties can proactively initiate discussions, this article has important implications for political agenda setting.
+        </div>
+      </details>
+    </div>
+
+    <div class="pub">
+      <div class="ptitle">Party Competition on Social Media: Evidence from Politicians' Tweets</div>
+      <div class="meta"><em>Scandinavian Political Studies</em>, 2024, 47(3), 334–457.<br>🏆 Winner of the Bryan Jones Best Paper Award 2022.</div>
+      <div class="plinks">
+        <a href="https://doi.org/10.1111/1467-9477.12276" target="_blank" rel="noopener">published version</a>
+      </div>
+      <details>
+        <summary></summary>
+        <div class="abstract">
+          A blooming research agenda has begun examining the influence of party competition dynamics on politician social media behaviour. Most studies focus on the US context, generally finding little evidence that party competition dynamics influence which policy issues politicians attend to on these platforms. Instead, I turn to the Danish context and show how party competition dynamics exert a substantial influence on politicians' attention to issues in their tweets. First, I map the level of politician issue attention on Twitter across several years outside election campaigns. Second, I show that party issue ownership and the status of a party as a government or opposition party strongly influence politicians' attention to issues on the platform. Third, I provide novel insights into how the interplay between party issue ownership and internal party organisation influences politician issue attention on Twitter. The findings indicate that the tweets posted by politicians are an integral aspect of contemporary party competition.
+        </div>
+      </details>
+    </div>
+
+    <div class="pub">
+      <div class="ptitle">Beyond Token Limits: Assessing Language Model Performance on Long Text Classification</div>
+      <div class="meta">With Miklós Sebők, Viktor Kovács, Martin Bánóczy, Nathalie Neptune &amp; Philippe Roussille.</div>
+      <div class="plinks">
+        <a href="https://arxiv.org/html/2509.10199v1" target="_blank" rel="noopener">arXiv</a>
+      </div>
+      <details>
+        <summary></summary>
+        <div class="abstract">
+          The most widely used large language models in the social sciences (such as BERT, and its derivatives, e.g. RoBERTa) have a limitation on the input text length that they can process to produce predictions. This is a particularly pressing issue for some classification tasks, where the aim is to handle long input texts. One such area deals with laws and draft laws (bills), which can have a length of multiple hundred pages and, therefore, are not particularly amenable for processing with models that can only handle e.g. 512 tokens. In this paper, we show results from experiments covering 5 languages with XLM-RoBERTa, Longformer, GPT-3.5, GPT-4 models for the multiclass classification task of the Comparative Agendas Project, which has a codebook of 21 policy topic labels from education to health care. Results show no particular advantage for the Longformer model, pre-trained specifically for the purposes of handling long inputs. The comparison between the GPT variants and the best-performing open model yielded an edge for the latter. An analysis of class-level factors points to the importance of support and substance overlaps between specific categories when it comes to performance on long text inputs.
+        </div>
+      </details>
+    </div>
+
+    <!-- ---------- WORKING PAPERS ---------- -->
+    <h3 class="subhead">working papers</h3>
+
+    <div class="pub">
+      <div class="ptitle">Releasing a Trojan Horse: How Government Parties Use Social Media to Influence the Opposition's Agenda in Parliament</div>
+      <details>
+        <summary></summary>
+        <div class="abstract">
+          Agenda setting is pivotal to democratic politics and remains in constant flux. With the rise of social media, many argue that political communication has increasingly migrated to these platforms, overshadowing traditional venues like parliament. However, the interplay between social media and the parliamentary venue remains poorly understood, even though understanding this relationship is crucial for grasping behavior in both contexts. In this paper, I argue that agendas initiated on social media can find their way into parliamentary discussions. However, while discussion in parliament is among opposition actors' prime means of confronting the government with its ideas, such discussions carry higher stakes for government actors, making parliamentary talk less cheap for them. This dynamic creates an unexpected opportunity: Government parties can leverage social media to initiate new agendas that opposition parties subsequently introduce into parliamentary debates. In contrast, opposition parties cannot similarly employ social media to force government responses in parliament. Utilizing an original dataset of over 5.5 million tweets by parties and politicians, 400,000 parliamentary questions, and 750,000 news articles from the United Kingdom and Denmark (2015–2022), I employ state-of-the-art automated content analysis techniques. The findings support the proposed ideas. Together, these insights underscore the dynamic interplay between digital platforms and the legislative venue, calling for a renewed understanding of agenda setting in a hybrid communication environment where the boundaries between social media and parliament are increasingly blurred.
+        </div>
+      </details>
+    </div>
+
+    <div class="pub">
+      <div class="ptitle">How Politicians Balance Party Priorities and Personal Interest</div>
+      <details>
+        <summary></summary>
+        <div class="abstract">
+          The tension between party loyalty and personal priorities is a fundamental dilemma for any politician. Yet we know little about how they manage this conflict. I propose that one central way they do so is by advancing their own interests in settings where the party exercises less control over their communication. And the distinction between work and off hours offers a window into this dynamic: during working hours, politicians are embedded in party structures through party staff, coordinated communication, and scrutiny. Outside working hours, these dynamics loosen. Drawing on over 5.5 million tweets by MPs in the UK and Denmark (2015–2022), I find strong support for this argument by showing that politicians systematically reduce their alignment with party priorities and cultivate their own profile outside working hours. This divide is more pronounced in the UK and in parties with stronger discipline. Leveraging COVID-19 parliamentary lockdowns as a quasi-natural experiment, I further show that physical proximity to party structures helps explain the pattern.
+        </div>
+      </details>
+    </div>
+
+    <div class="pub">
+      <div class="ptitle">Party Leader Interpretations of Election Results: Evidence from Election Night Speeches</div>
+      <div class="meta">With Martin Bækgaard, Helene Helboe Pedersen &amp; Henrik Bech Seeberg.</div>
+      <details>
+        <summary></summary>
+        <div class="abstract">
+          Democratic elections are pivotal events that can reshape political power and alter the direction of countries. Yet election results do not speak for themselves; their political consequences depend on how they are interpreted by elites who gain, retain, or lose power. This paper examines how party leaders explain election outcomes in Election Night speeches, thereby setting the stage for subsequent struggles over the meaning of the result. We analyze 694 speeches delivered after democratic elections in 68 countries between 2010 and 2024. Combining human and automated coding, we identify nine distinct types of interpretation frames. Winners are more likely to define the mandate of the election and emphasize future policy agendas, whereas losers more often act as democratic brokers by either disputing the result or explicitly affirming democratic norms. Electoral disputes are more common when election integrity is low, while explicit acceptance of results is more likely when outcomes are clear. Anti-establishment parties, moreover, provide comparatively little explicit support for democracy in their post-election rhetoric. The paper introduces a new research agenda for a data-driven study of elite post-election rhetoric and for theorizing its causes and consequences for political power and policies.
+        </div>
+      </details>
+    </div>
+
+    <div class="pub">
+      <div class="ptitle">How Consensus Democracies Foster Constructive Oppositions</div>
+      <div class="meta">With Mathias Bukh Vestergaard.</div>
+      <details>
+        <summary></summary>
+        <div class="abstract">
+          Representative democracy is increasingly viewed as dysfunctional, with a substantial strand of literature emphasizing the antagonism of opposition parties. We develop a different perspective and theorize how a widespread political system, the so-called consensus democracy, incentivizes opposition parties to make constructive, forward-looking communication that allows voters to make informed choices. Specifically, we highlight how legislative cooperation, a defining feature of this type of system, provides opposition parties with credibility to make promises. Drawing on a novel dataset of daily social media communication over fourteen years and legislative behavior by parties in two consensus democracies, we show that promises are a highly prevalent mode of opposition rhetoric. In line with our theory, opposition parties make more promises after cooperating with the government on new legislation, and this dynamic amplifies under more favorable agenda environments. This contribution suggests that consensus democracies produce their own conditions for building strong representative links.
+        </div>
+      </details>
+    </div>
+
+    <div class="pub">
+      <div class="ptitle">Posting for the Press? Social Media as a Pathway to News Visibility for Members of Parliament in Denmark and the UK</div>
+      <div class="meta">With Gunnar Thesen &amp; Tevfik Murat Yildirim.</div>
+      <details>
+        <summary></summary>
+        <div class="abstract">
+          Social media promised politicians direct access to audiences. Yet traditional news media remains central to political careers, shaping public recognition, and signaling relevance, and influencing party standing. In a hybrid media system, social media does not bypass these dynamics but feeds into them — though how, and under what conditions it does so, remains poorly understood. We argue that three dimensions of MPs' social media behavior jointly shape their national news visibility: (i) how much they post, (ii) how locally focused their content is, and (iii) how oriented their engagement is toward national rather than local media outlets. Critically, electoral institutions condition all three: in single-member district plurality systems, personal vote-seeking incentives push MPs toward constituency-targeted communication that is misaligned with national news values, systematically weakening the link between social media activity and national media access. Using error correction models on a panel dataset covering the population of tweets by Danish and UK MPs (2015–2019) and over 750,000 articles from six national newspapers, we find that tweet volume is positively associated with news visibility in both countries, though significantly more so in Denmark. Constituency-targeted social media content and locally-oriented media engagement is inconsequential in Denmark but reduces news visibility in the UK, where electoral incentives systematically push MPs toward communication strategies that work against their national media access.
+        </div>
+      </details>
+    </div>
+
+    <div class="pub">
+      <div class="ptitle">Politicizing the “Left Behind”: How Did the Geography of Discontent Become Mainstream Politics?</div>
+      <div class="meta">With Carsten Jensen &amp; Henrik Bech Seeberg.</div>
+      <details>
+        <summary></summary>
+        <div class="abstract">
+          Across Europe, rural areas are falling behind, and a burgeoning literature shows that voters in peripheral areas increasingly turn to populist, far-right parties. How these grievances enter the party system itself, however, remains unstudied. In response, we introduce the concept of peripheral politicization and theorize how mainstream parties adapt to localized electoral shocks (i.e., sudden electoral losses concentrated in peripheral areas). Mainstream MPs from the nomination districts most strongly affected by the shock should take up peripheral politicization first; only subsequently should the rest of the party catch up. Testing this argument on parliamentary questions in Denmark, and exploiting the 2015 Danish People's Party victory as a shock, we find support for our argument: the post-2015 rise in peripheral politicization is driven first by MPs from the most affected districts and only later by the rest of the party, and is not explained by underlying local socio-economic deterioration. A content analysis of post-election news coverage further supports the argument: mainstream parties and election experts initially read the 2015 shock as a verdict on immigration and leadership scandals, not on the periphery. These findings have important implications for understanding how the geography of discontent enters mainstream politics.
+        </div>
+      </details>
+    </div>
+
+    <div class="pub">
+      <div class="ptitle">Supplying Issue Attention Without Eroding the Brand: How Parties Emphasize Issues Across Demographic Groups</div>
+      <div class="meta">With Marc-Antoine Martel.</div>
+      <details>
+        <summary></summary>
+        <div class="abstract">
+          Research on issue competition has traditionally studied party communication through channels delivering uniform messages to all voters. However, the rise of social media advertising platforms has introduced a fundamental change in that they allow parties to target different audiences when distributing ads. Whether parties exploit this capacity matters: speaking with different voices to different groups would undermine the assumption that party agendas are unitary signals, and complicate voters' ability to identify what a party truly stands for. We investigate whether individual parties present consistent or differentiated agendas to various demographic segments through advertising on Meta platforms. Using a new cross-national dataset of 121,967 issue-based advertisements from 69 parties in eight Western European and North American democracies, we show that even with the capacity for targeting, individual parties present largely similar issue profiles across demographic groups, reflecting systemic pressures toward brand consistency. At the same time, individual parties modulate their issue emphasis across age and gender groups, following systematic patterns across countries. This modulation follows an inverse U-shape by age: individual parties present their most distinct issue profiles to younger and older audiences, while presenting more typical emphases to middle-aged groups. Issue-level analyses reveal that parties emphasize issues aligned with perceived differences in policy concerns across life-cycle stages and gender.
+        </div>
+      </details>
+    </div>
+
+    <div class="pub">
+      <div class="ptitle">Euroscepticism and EU Support in the 2024 European Parliament Election Campaigns: A Social Media Analysis Using Large Language Models</div>
+      <div class="meta">With Michaela Maier, Aidar Zinnatullin, Felipe Barreto de Souza Martins, Sary Elmansoury, Talisa Schwall, Carlos Jalali, Gabriella Szabó, Alena Pospíšil Macková &amp; Tamara Kunić.</div>
+      <details>
+        <summary></summary>
+        <div class="abstract">
+          The 2024 European Parliament (EP) election was a critical election that took place during the permacrisis of the European Union (EU). This study examines the social media campaigns of political parties before the election. By analysing the content of YouTube and TikTok videos published by parties in six EU countries (Croatia, Czech Republic, Denmark, Germany, Hungary and Portugal) with the help of large language models (LLMs), we investigated the extent to which parties engaged with EU-related issues and which party groups expressed Eurosceptic positions. We found that the Europeanisation of party campaigns was much stronger in 2024 than in earlier elections. Government parties were no longer silent about EU issues but discussed them intensively. EU negativity followed a clear U-shape across ideologies, peaking on the far right but trickling down to the centre-right, employing nationalist framing.
+        </div>
+      </details>
+    </div>
+
+    <div class="pub">
+      <div class="ptitle">Their Greatest Hits: How Engagement Informs Political Parties' Election Campaigns</div>
+      <div class="meta">With Mathias Bukh Vestergaard.</div>
+      <details>
+        <summary></summary>
+        <div class="abstract">
+          Campaign promises are central to modern elections and credible signals of future policymaking. Yet we know surprisingly little about how political parties select which promises to feature in their election campaigns. We argue that the public engagement parties' between-election communications receive shapes which promises they reintroduce when the next election approaches. We test this argument by drawing on the population of Facebook posts from parties in Denmark and the United Kingdom from 2010 to 2024, and by using state-of-the-art large language models to identify promises. Across several model specifications and an extensive set of robustness checks, we find that the engagement a between-election promise receives strongly predicts whether the party reintroduces it during the next campaign. By opening the black box of where election promises come from, our findings reveal a previously undocumented channel through which voters help shape the agendas of subsequent election campaigns.
+        </div>
+      </details>
+    </div>
+
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact">
+    <h2>contact</h2>
+    <p>
+      Department of Political Science<br>
+      Aarhus University<br>
+      Bartholins Allé 7, 8000 Aarhus C, Denmark
+    </p>
+
+    <!-- ===== Links — slet dem du ikke bruger ===== -->
+    <div class="links">
+      <a href="mailto:dme@ps.au.dk">email</a>
+      <a href="https://bsky.app/profile/daniel-eriksen.bsky.social" target="_blank" rel="noopener">bluesky</a>
+      <a href="https://www.linkedin.com/in/daniel-sandvej-eriksen-3592481a0/" target="_blank" rel="noopener">linkedin</a>
+      <!-- Tilføj senere når du har dem:
+      <a href="CV.pdf">cv</a>
+      <a href="https://scholar.google.com/" target="_blank" rel="noopener">scholar</a>
+      <a href="https://orcid.org/" target="_blank" rel="noopener">orcid</a>
+      -->
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <span class="prompt">❯</span> © <span id="year"></span> Daniel Sandvej Eriksen
+</footer>
+
+<script>
+  // sætter automatisk det aktuelle årstal i footeren
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
