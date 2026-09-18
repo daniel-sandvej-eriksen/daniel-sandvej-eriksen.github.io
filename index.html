@@ -18,10 +18,10 @@
 <meta property="og:url" content="https://daniel-sandvej-eriksen.github.io/">
 <meta property="og:image" content="https://daniel-sandvej-eriksen.github.io/profile.webp">
 
-<!-- Skrifttyper: klassisk serif til tekst (Source Serif 4) + ren sans til småt (Inter). Hentes fra Google Fonts. -->
+<!-- Skrifttyper: klassisk Garamond til tekst (EB Garamond) + ren sans til småt (Inter). Hentes fra Google Fonts. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
   /* =========================================================
@@ -32,22 +32,22 @@
     --bg:#fdfdfb;           /* næsten hvid, en anelse varm */
     --text:#23272c;         /* mørk, blød tekst */
     --muted:#6c757d;        /* dæmpet grå */
-    --accent:#2f6690;       /* dæmpet, klassisk blå */
-    --accent-dark:#244f70;
+    --accent:#1a1a1a;       /* sort (links, nav-hover, knapper) */
+    --accent-dark:#000000;
     --line:#e7e6e1;         /* fine skillelinjer */
-    --tag-bg:#eef3f7;
-    --tag-border:#d5e2ec;
+    --tag-bg:#edf4ef;
+    --tag-border:#cfe3d6;
     --maxwidth:720px;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
     margin:0;
-    font-family:"Source Serif 4",Georgia,"Times New Roman",serif;
+    font-family:"EB Garamond",Garamond,Georgia,"Times New Roman",serif;
     color:var(--text);
     background:var(--bg);
-    line-height:1.72;
-    font-size:18px;
+    line-height:1.78;
+    font-size:20px;
     -webkit-font-smoothing:antialiased;
     text-rendering:optimizeLegibility;
   }
@@ -56,7 +56,7 @@
   a:hover{text-decoration:underline;}
 
   /* fælles "sans"-stil til småt (nav, labels, meta) */
-  .sans,nav,.subhead,.meta,.plinks,.status,details summary,.links,footer{
+  .sans,nav,.subhead,.meta,.plinks,details summary,.links,footer{
     font-family:"Inter",system-ui,-apple-system,Segoe UI,sans-serif;
   }
 
@@ -68,8 +68,8 @@
   }
   nav .wrap{display:flex;gap:26px;align-items:center;height:62px;}
   nav .name{
-    font-family:"Source Serif 4",Georgia,serif;
-    font-weight:700;font-size:18px;color:var(--text);margin-right:auto;
+    font-family:"EB Garamond",Garamond,Georgia,serif;
+    font-weight:700;font-size:21px;color:var(--text);margin-right:auto;
   }
   nav a{color:var(--muted);font-size:15px;font-weight:500;}
   nav a:hover{color:var(--accent);text-decoration:none;}
@@ -83,40 +83,39 @@
     box-shadow:0 2px 14px rgba(0,0,0,.10);
   }
   .intro h1{
-    font-size:34px;line-height:1.15;margin:2px 0 6px;font-weight:700;
-    letter-spacing:-.01em;
+    font-size:39px;line-height:1.15;margin:2px 0 8px;font-weight:700;
+    letter-spacing:-.005em;
   }
   .intro .role{color:var(--muted);font-size:16px;margin:0 0 20px;font-weight:500;}
   .intro p{margin:0 0 15px;}
   .intro p:last-child{margin-bottom:0;}
 
   /* ---------- Sektioner ---------- */
-  section{padding:42px 0;border-top:1px solid var(--line);}
+  section{padding:52px 0;border-top:1px solid var(--line);}
   h2{
-    font-size:25px;margin:0 0 6px;font-weight:700;letter-spacing:-.01em;
+    font-size:29px;margin:0 0 6px;font-weight:700;letter-spacing:-.01em;
   }
   h3.subhead{
-    font-size:12.5px;text-transform:uppercase;letter-spacing:.09em;
-    color:var(--muted);margin:32px 0 18px;font-weight:600;
+    font-size:16px;text-transform:uppercase;letter-spacing:.08em;
+    color:#1a1a1a;margin:46px 0 20px;font-weight:700;
+    padding-bottom:9px;border-bottom:1px solid #9c988f;
   }
 
   /* ---------- Publikationer ---------- */
-  .pub{margin:0 0 26px;}
-  .pub .ptitle{font-weight:600;font-size:18.5px;line-height:1.4;}
-  .pub .meta{color:var(--muted);font-size:14.5px;margin:4px 0 7px;line-height:1.55;}
+  .pub{margin:0 0 40px;}
+  .pub .ptitle{font-weight:700;font-size:22px;line-height:1.35;}
+  .pub .meta{color:var(--text);font-size:15px;margin:6px 0 8px;line-height:1.55;}
   .pub .meta em{font-style:italic;}
 
   /* lille status-mærkat (Under review osv.) */
+  /* status i parentes: serif kursiv, sort — skiller sig ud via form, ikke farve */
   .status{
-    display:inline-block;font-size:11px;font-weight:600;
-    text-transform:uppercase;letter-spacing:.04em;
-    color:var(--accent-dark);background:var(--tag-bg);
-    border:1px solid var(--tag-border);border-radius:100px;
-    padding:2px 10px;margin-left:2px;vertical-align:1px;
+    font-style:italic;font-weight:400;font-size:.82em;
+    color:var(--text);margin-left:6px;white-space:nowrap;
   }
 
   .pub .plinks{font-size:14px;margin-top:5px;display:flex;flex-wrap:wrap;gap:16px;}
-  .pub .plinks a{font-weight:500;}
+  .pub .plinks a{font-weight:500;text-decoration:underline;text-underline-offset:2px;}
 
   /* udfoldeligt abstract */
   details{margin-top:9px;}
@@ -128,7 +127,7 @@
   details summary::before{content:"▸ Abstract";}
   details[open] summary::before{content:"▾ Abstract";}
   details .abstract{
-    margin-top:11px;font-size:16.5px;line-height:1.65;color:#3a3f45;
+    margin-top:13px;font-size:19px;line-height:1.7;color:#3a3f45;
     border-left:2px solid var(--line);padding-left:18px;
   }
 
@@ -143,11 +142,12 @@
   footer{padding:44px 0 60px;color:var(--muted);font-size:13.5px;text-align:center;}
 
   @media(max-width:560px){
-    body{font-size:17px;}
+    body{font-size:18px;}
     .intro{flex-direction:column;align-items:flex-start;gap:24px;}
-    .intro h1{font-size:29px;}
+    .intro h1{font-size:33px;}
+    .pub .ptitle{font-size:20px;}
     nav .wrap{gap:16px;}
-    nav .name{margin-right:0;font-size:16px;}
+    nav .name{margin-right:0;font-size:18px;}
     nav a{font-size:14px;}
   }
 </style>
@@ -248,8 +248,8 @@
     <h3 class="subhead">Working papers</h3>
 
     <div class="pub">
-      <div class="ptitle">How Consensus Democracies Foster Constructive Oppositions</div>
-      <div class="meta">With Mathias Bukh Vestergaard. <span class="status">Under review</span></div>
+      <div class="ptitle">How Consensus Democracies Foster Constructive Oppositions <span class="status">(Under review)</span></div>
+      <div class="meta">With Mathias Bukh Vestergaard.</div>
       <details>
         <summary></summary>
         <div class="abstract">
@@ -259,8 +259,8 @@
     </div>
 
     <div class="pub">
-      <div class="ptitle">Posting for the Press? Social Media as a Pathway to News Visibility for Members of Parliament in Denmark and the UK</div>
-      <div class="meta">With Gunnar Thesen &amp; Tevfik Murat Yildirim. <span class="status">Under review</span></div>
+      <div class="ptitle">Posting for the Press? Social Media as a Pathway to News Visibility for Members of Parliament in Denmark and the UK <span class="status">(Under review)</span></div>
+      <div class="meta">With Gunnar Thesen &amp; Tevfik Murat Yildirim.</div>
       <details>
         <summary></summary>
         <div class="abstract">
@@ -270,8 +270,8 @@
     </div>
 
     <div class="pub">
-      <div class="ptitle">Euroscepticism and EU Support in the 2024 European Parliament Election Campaigns: A Social Media Analysis Using Large Language Models</div>
-      <div class="meta">With Michaela Maier, Aidar Zinnatullin, Felipe Barreto de Souza Martins, Sary Elmansoury, Talisa Schwall, Carlos Jalali, Gabriella Szabó, Alena Pospíšil Macková &amp; Tamara Kunić. <span class="status">Invited for Revise and Resubmit</span></div>
+      <div class="ptitle">Euroscepticism and EU Support in the 2024 European Parliament Election Campaigns: A Social Media Analysis Using Large Language Models <span class="status">(Invited for Revise and Resubmit)</span></div>
+      <div class="meta">With Michaela Maier, Aidar Zinnatullin, Felipe Barreto de Souza Martins, Sary Elmansoury, Talisa Schwall, Carlos Jalali, Gabriella Szabó, Alena Pospíšil Macková &amp; Tamara Kunić.</div>
       <details>
         <summary></summary>
         <div class="abstract">
