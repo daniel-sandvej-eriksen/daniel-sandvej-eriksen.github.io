@@ -18,145 +18,137 @@
 <meta property="og:url" content="https://daniel-sandvej-eriksen.github.io/">
 <meta property="og:image" content="https://daniel-sandvej-eriksen.github.io/profile.webp">
 
-<!-- Programmer-skrifttype (JetBrains Mono). Kræver internet; falder ellers tilbage til systemets monospace. -->
+<!-- Skrifttyper: klassisk serif til tekst (Source Serif 4) + ren sans til småt (Inter). Hentes fra Google Fonts. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
 
 <style>
   /* =========================================================
-     TERMINAL / RETRO-CODER TEMA
-     Vil du skifte accentfarven (fosfor-grøn), så ret --accent.
-     Prøv fx amber: --accent:#ffb000;  --glow:rgba(255,176,0,.5);
+     LYST, KLASSISK AKADEMISK TEMA
+     Vil du skifte accentfarven, så ret --accent nedenfor.
      ========================================================= */
   :root{
-    --bg:#0a0e14;            /* næsten sort baggrund */
-    --panel:#0e131c;        /* lidt lysere paneler */
-    --text:#c7d0d9;         /* almindelig tekst */
-    --muted:#5f7080;        /* dæmpet/grålig */
-    --accent:#3ff396;       /* fosfor-grøn */
-    --accent-dim:#1f7d57;
-    --amber:#ffb454;        /* sekundær accent */
-    --line:#1b2430;
-    --glow:rgba(63,243,150,.35);
-    --maxwidth:780px;
+    --bg:#fdfdfb;           /* næsten hvid, en anelse varm */
+    --text:#23272c;         /* mørk, blød tekst */
+    --muted:#6c757d;        /* dæmpet grå */
+    --accent:#2f6690;       /* dæmpet, klassisk blå */
+    --accent-dark:#244f70;
+    --line:#e7e6e1;         /* fine skillelinjer */
+    --tag-bg:#eef3f7;
+    --tag-border:#d5e2ec;
+    --maxwidth:720px;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
     margin:0;
-    font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-family:"Source Serif 4",Georgia,"Times New Roman",serif;
     color:var(--text);
     background:var(--bg);
-    line-height:1.7;
-    font-size:15.5px;
+    line-height:1.72;
+    font-size:18px;
     -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
   }
-  /* svage CRT-scanlines hen over hele siden */
-  body::before{
-    content:"";position:fixed;inset:0;pointer-events:none;z-index:50;
-    background:repeating-linear-gradient(
-      to bottom,
-      rgba(255,255,255,.022) 0px,
-      rgba(255,255,255,.022) 1px,
-      transparent 1px,
-      transparent 3px);
-    mix-blend-mode:overlay;
-  }
-  .wrap{max-width:var(--maxwidth);margin:0 auto;padding:0 24px;}
+  .wrap{max-width:var(--maxwidth);margin:0 auto;padding:0 26px;}
   a{color:var(--accent);text-decoration:none;}
-  a:hover{text-decoration:underline;text-shadow:0 0 8px var(--glow);}
+  a:hover{text-decoration:underline;}
+
+  /* fælles "sans"-stil til småt (nav, labels, meta) */
+  .sans,nav,.subhead,.meta,.plinks,.status,details summary,.links,footer{
+    font-family:"Inter",system-ui,-apple-system,Segoe UI,sans-serif;
+  }
 
   /* ---------- Topnavigation ---------- */
   nav{
     border-bottom:1px solid var(--line);
     position:sticky;top:0;z-index:20;
-    background:rgba(10,14,20,.85);backdrop-filter:blur(8px);
+    background:rgba(253,253,251,.9);backdrop-filter:blur(8px);
   }
-  nav .wrap{display:flex;gap:24px;align-items:center;height:58px;}
-  nav a{color:var(--muted);font-size:14px;font-weight:500;}
-  nav a::before{content:"";}
-  nav a:hover{color:var(--accent);}
-  nav .name{color:var(--accent);font-weight:700;margin-right:auto;text-shadow:0 0 10px var(--glow);}
+  nav .wrap{display:flex;gap:26px;align-items:center;height:62px;}
+  nav .name{
+    font-family:"Source Serif 4",Georgia,serif;
+    font-weight:700;font-size:18px;color:var(--text);margin-right:auto;
+  }
+  nav a{color:var(--muted);font-size:15px;font-weight:500;}
+  nav a:hover{color:var(--accent);text-decoration:none;}
 
   /* ---------- Header / intro ---------- */
-  header{padding:54px 0 34px;}
-  .intro{display:flex;gap:34px;align-items:flex-start;flex-wrap:wrap;}
+  header{padding:56px 0 40px;}
+  .intro{display:flex;gap:38px;align-items:flex-start;flex-wrap:wrap;}
   .photo{
-    width:168px;height:168px;object-fit:cover;object-position:center 20%;flex-shrink:0;
-    border:1px solid var(--accent-dim);
-    border-radius:6px;
-    filter:grayscale(.25) contrast(1.05);
-    box-shadow:0 0 0 1px var(--line),0 0 24px rgba(63,243,150,.12);
+    width:150px;height:150px;object-fit:cover;object-position:center 20%;
+    flex-shrink:0;border-radius:50%;
+    box-shadow:0 2px 14px rgba(0,0,0,.10);
   }
   .intro h1{
-    font-size:30px;margin:0 0 4px;color:#e8eef3;font-weight:700;
-    text-shadow:0 0 14px rgba(63,243,150,.18);
+    font-size:34px;line-height:1.15;margin:2px 0 6px;font-weight:700;
+    letter-spacing:-.01em;
   }
-  .intro .role{color:var(--amber);font-size:15px;margin:0 0 18px;}
-  .intro .role::before{content:"// ";color:var(--muted);}
-  .intro p{margin:0 0 14px;}
-  .prompt{color:var(--accent);}  /* til $-tegn o.l. */
-
-  .links{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px;font-size:13.5px;}
-  .links a{
-    border:1px solid var(--line);border-radius:5px;padding:5px 11px;
-    color:var(--text);background:var(--panel);
-  }
-  .links a::before{content:"[ ";color:var(--accent);}
-  .links a::after{content:" ]";color:var(--accent);}
-  .links a:hover{border-color:var(--accent-dim);color:var(--accent);text-decoration:none;}
+  .intro .role{color:var(--muted);font-size:16px;margin:0 0 20px;font-weight:500;}
+  .intro p{margin:0 0 15px;}
+  .intro p:last-child{margin-bottom:0;}
 
   /* ---------- Sektioner ---------- */
-  section{padding:36px 0;border-top:1px solid var(--line);}
+  section{padding:42px 0;border-top:1px solid var(--line);}
   h2{
-    font-size:18px;margin:0 0 24px;color:#e8eef3;font-weight:700;
+    font-size:25px;margin:0 0 6px;font-weight:700;letter-spacing:-.01em;
   }
   h3.subhead{
-    font-size:15.5px;letter-spacing:.04em;color:var(--amber);
-    margin:34px 0 16px;font-weight:500;
+    font-size:12.5px;text-transform:uppercase;letter-spacing:.09em;
+    color:var(--muted);margin:32px 0 18px;font-weight:600;
   }
-  h3.subhead::before{content:"// ";color:var(--muted);}
 
   /* ---------- Publikationer ---------- */
-  .pub{
-    margin:0 0 16px;padding:16px 18px;
-    background:var(--panel);border:1px solid var(--line);border-radius:7px;
-  }
-  .pub:hover{border-color:var(--accent-dim);}
-  .pub .ptitle{font-weight:500;color:#e8eef3;}
-  .pub .meta{color:var(--muted);font-size:13.5px;margin:5px 0 9px;}
+  .pub{margin:0 0 26px;}
+  .pub .ptitle{font-weight:600;font-size:18.5px;line-height:1.4;}
+  .pub .meta{color:var(--muted);font-size:14.5px;margin:4px 0 7px;line-height:1.55;}
   .pub .meta em{font-style:italic;}
-  .pub .plinks{font-size:13px;margin-top:6px;display:flex;flex-wrap:wrap;gap:8px;}
-  .pub .plinks a{
-    border:1px solid var(--line);border-radius:4px;padding:2px 9px;color:var(--text);
+
+  /* lille status-mærkat (Under review osv.) */
+  .status{
+    display:inline-block;font-size:11px;font-weight:600;
+    text-transform:uppercase;letter-spacing:.04em;
+    color:var(--accent-dark);background:var(--tag-bg);
+    border:1px solid var(--tag-border);border-radius:100px;
+    padding:2px 10px;margin-left:2px;vertical-align:1px;
   }
-  .pub .plinks a::before{content:"› ";color:var(--accent);}
-  .pub .plinks a:hover{border-color:var(--accent-dim);color:var(--accent);text-decoration:none;}
+
+  .pub .plinks{font-size:14px;margin-top:5px;display:flex;flex-wrap:wrap;gap:16px;}
+  .pub .plinks a{font-weight:500;}
 
   /* udfoldeligt abstract */
-  details{margin-top:11px;}
+  details{margin-top:9px;}
   details summary{
-    cursor:pointer;color:var(--accent);font-size:13px;
+    cursor:pointer;color:var(--accent);font-size:14px;font-weight:500;
     list-style:none;display:inline-block;user-select:none;
   }
   details summary::-webkit-details-marker{display:none;}
-  details summary::before{content:"▶ abstract";}
-  details[open] summary::before{content:"▼ abstract";}
-  details summary span{display:none;}
+  details summary::before{content:"▸ Abstract";}
+  details[open] summary::before{content:"▾ Abstract";}
   details .abstract{
-    margin-top:10px;font-size:14px;color:var(--text);
-    border-left:2px solid var(--accent-dim);padding:2px 0 2px 14px;
-    background:rgba(63,243,150,.03);
+    margin-top:11px;font-size:16.5px;line-height:1.65;color:#3a3f45;
+    border-left:2px solid var(--line);padding-left:18px;
   }
 
-  footer{padding:40px 0 60px;color:var(--muted);font-size:13px;text-align:center;}
-  footer .prompt{color:var(--accent);}
+  /* ---------- Links (kontakt) ---------- */
+  .links{margin-top:18px;display:flex;flex-wrap:wrap;gap:12px;font-size:14.5px;}
+  .links a{
+    border:1px solid var(--line);border-radius:6px;padding:7px 15px;
+    color:var(--accent);background:#fff;font-weight:500;
+  }
+  .links a:hover{border-color:var(--accent);text-decoration:none;}
+
+  footer{padding:44px 0 60px;color:var(--muted);font-size:13.5px;text-align:center;}
 
   @media(max-width:560px){
-    .intro{flex-direction:column;align-items:flex-start;}
+    body{font-size:17px;}
+    .intro{flex-direction:column;align-items:flex-start;gap:24px;}
+    .intro h1{font-size:29px;}
     nav .wrap{gap:16px;}
-    nav .name{margin-right:0;}
+    nav .name{margin-right:0;font-size:16px;}
+    nav a{font-size:14px;}
   }
 </style>
 </head>
@@ -165,11 +157,11 @@
 <!-- ============ NAVIGATION ============ -->
 <nav>
   <div class="wrap">
-    <a href="#top" class="name">daniel-sandvej-eriksen</a>
-    <a href="#about">about</a>
-    <a href="#research">research</a>
-    <a href="#media">media</a>
-    <a href="#contact">contact</a>
+    <a href="#top" class="name">Daniel Sandvej Eriksen</a>
+    <a href="#about">About</a>
+    <a href="#research">Research</a>
+    <a href="#media">Media</a>
+    <a href="#contact">Contact</a>
   </div>
 </nav>
 
@@ -186,14 +178,14 @@
         <p class="role">Assistant Professor · Department of Political Science, Aarhus University</p>
 
         <!-- ===== Kort intro om dig — ret denne tekst ===== -->
-        <p>
-          Welcome to my website!
-        </p>
+        <p>Welcome to my website!</p>
         <p>
           I'm a political scientist based at Aarhus University.
           My research interests lie primarily in political communication,
           comparative politics, and public policy, with a particular focus on
-          party competition, agenda setting, and intra-party dynamics.<br>
+          party competition, agenda setting, and intra-party dynamics.
+        </p>
+        <p>
           Methodologically, I primarily draw on computational social science, using
           large-scale text and data to study how political parties and
           politicians behave.
@@ -204,17 +196,17 @@
 
   <!-- ============ RESEARCH ============ -->
   <section id="research">
-    <h2>research</h2>
+    <h2>Research</h2>
 
     <!-- ---------- PUBLICATIONS ---------- -->
-    <h3 class="subhead">publications</h3>
+    <h3 class="subhead">Publications</h3>
 
     <!-- ====== SÅDAN TILFØJER DU ET NYT PAPER: kopiér én hel <div class="pub">…</div>-blok og ret indholdet ====== -->
     <div class="pub">
       <div class="ptitle">Initiate and Elevate! How Political Parties Can Set an Agenda</div>
       <div class="meta"><em>American Political Science Review</em>, 2026, 1–19.</div>
       <div class="plinks">
-        <a href="https://doi.org/10.1017/S0003055426101506" target="_blank" rel="noopener">published version</a>
+        <a href="https://doi.org/10.1017/S0003055426101506" target="_blank" rel="noopener">Published version</a>
       </div>
       <details>
         <summary></summary>
@@ -228,7 +220,7 @@
       <div class="ptitle">Party Competition on Social Media: Evidence from Politicians' Tweets</div>
       <div class="meta"><em>Scandinavian Political Studies</em>, 2024, 47(3), 334–457.<br>🏆 Winner of the Bryan Jones Best Paper Award 2023.</div>
       <div class="plinks">
-        <a href="https://doi.org/10.1111/1467-9477.12276" target="_blank" rel="noopener">published version</a>
+        <a href="https://doi.org/10.1111/1467-9477.12276" target="_blank" rel="noopener">Published version</a>
       </div>
       <details>
         <summary></summary>
@@ -253,7 +245,40 @@
     </div>
 
     <!-- ---------- WORKING PAPERS ---------- -->
-    <h3 class="subhead">working papers</h3>
+    <h3 class="subhead">Working papers</h3>
+
+    <div class="pub">
+      <div class="ptitle">How Consensus Democracies Foster Constructive Oppositions</div>
+      <div class="meta">With Mathias Bukh Vestergaard. <span class="status">Under review</span></div>
+      <details>
+        <summary></summary>
+        <div class="abstract">
+          Representative democracy is increasingly viewed as dysfunctional, with a substantial strand of literature emphasizing the antagonism of opposition parties. We develop a different perspective and theorize how a widespread political system, the so-called consensus democracy, incentivizes opposition parties to make constructive, forward-looking communication that allows voters to make informed choices. Specifically, we highlight how legislative cooperation, a defining feature of this type of system, provides opposition parties with credibility to make promises. Drawing on a novel dataset of daily social media communication over fourteen years and legislative behavior by parties in two consensus democracies, we show that promises are a highly prevalent mode of opposition rhetoric. In line with our theory, opposition parties make more promises after cooperating with the government on new legislation, and this dynamic amplifies under more favorable agenda environments. This contribution suggests that consensus democracies produce their own conditions for building strong representative links.
+        </div>
+      </details>
+    </div>
+
+    <div class="pub">
+      <div class="ptitle">Posting for the Press? Social Media as a Pathway to News Visibility for Members of Parliament in Denmark and the UK</div>
+      <div class="meta">With Gunnar Thesen &amp; Tevfik Murat Yildirim. <span class="status">Under review</span></div>
+      <details>
+        <summary></summary>
+        <div class="abstract">
+          Social media promised politicians direct access to audiences. Yet traditional news media remains central to political careers, shaping public recognition, and signaling relevance, and influencing party standing. In a hybrid media system, social media does not bypass these dynamics but feeds into them — though how, and under what conditions it does so, remains poorly understood. We argue that three dimensions of MPs' social media behavior jointly shape their national news visibility: (i) how much they post, (ii) how locally focused their content is, and (iii) how oriented their engagement is toward national rather than local media outlets. Critically, electoral institutions condition all three: in single-member district plurality systems, personal vote-seeking incentives push MPs toward constituency-targeted communication that is misaligned with national news values, systematically weakening the link between social media activity and national media access. Using error correction models on a panel dataset covering the population of tweets by Danish and UK MPs (2015–2019) and over 750,000 articles from six national newspapers, we find that tweet volume is positively associated with news visibility in both countries, though significantly more so in Denmark. Constituency-targeted social media content and locally-oriented media engagement is inconsequential in Denmark but reduces news visibility in the UK, where electoral incentives systematically push MPs toward communication strategies that work against their national media access.
+        </div>
+      </details>
+    </div>
+
+    <div class="pub">
+      <div class="ptitle">Euroscepticism and EU Support in the 2024 European Parliament Election Campaigns: A Social Media Analysis Using Large Language Models</div>
+      <div class="meta">With Michaela Maier, Aidar Zinnatullin, Felipe Barreto de Souza Martins, Sary Elmansoury, Talisa Schwall, Carlos Jalali, Gabriella Szabó, Alena Pospíšil Macková &amp; Tamara Kunić. <span class="status">Invited for Revise and Resubmit</span></div>
+      <details>
+        <summary></summary>
+        <div class="abstract">
+          The 2024 European Parliament (EP) election was a critical election that took place during the permacrisis of the European Union (EU). This study examines the social media campaigns of political parties before the election. By analysing the content of YouTube and TikTok videos published by parties in six EU countries (Croatia, Czech Republic, Denmark, Germany, Hungary and Portugal) with the help of large language models (LLMs), we investigated the extent to which parties engaged with EU-related issues and which party groups expressed Eurosceptic positions. We found that the Europeanisation of party campaigns was much stronger in 2024 than in earlier elections. Government parties were no longer silent about EU issues but discussed them intensively. EU negativity followed a clear U-shape across ideologies, peaking on the far right but trickling down to the centre-right, employing nationalist framing.
+        </div>
+      </details>
+    </div>
 
     <div class="pub">
       <div class="ptitle">Releasing a Trojan Horse: How Government Parties Use Social Media to Influence the Opposition's Agenda in Parliament</div>
@@ -287,28 +312,6 @@
     </div>
 
     <div class="pub">
-      <div class="ptitle">How Consensus Democracies Foster Constructive Oppositions</div>
-      <div class="meta">With Mathias Bukh Vestergaard.</div>
-      <details>
-        <summary></summary>
-        <div class="abstract">
-          Representative democracy is increasingly viewed as dysfunctional, with a substantial strand of literature emphasizing the antagonism of opposition parties. We develop a different perspective and theorize how a widespread political system, the so-called consensus democracy, incentivizes opposition parties to make constructive, forward-looking communication that allows voters to make informed choices. Specifically, we highlight how legislative cooperation, a defining feature of this type of system, provides opposition parties with credibility to make promises. Drawing on a novel dataset of daily social media communication over fourteen years and legislative behavior by parties in two consensus democracies, we show that promises are a highly prevalent mode of opposition rhetoric. In line with our theory, opposition parties make more promises after cooperating with the government on new legislation, and this dynamic amplifies under more favorable agenda environments. This contribution suggests that consensus democracies produce their own conditions for building strong representative links.
-        </div>
-      </details>
-    </div>
-
-    <div class="pub">
-      <div class="ptitle">Posting for the Press? Social Media as a Pathway to News Visibility for Members of Parliament in Denmark and the UK</div>
-      <div class="meta">With Gunnar Thesen &amp; Tevfik Murat Yildirim.</div>
-      <details>
-        <summary></summary>
-        <div class="abstract">
-          Social media promised politicians direct access to audiences. Yet traditional news media remains central to political careers, shaping public recognition, and signaling relevance, and influencing party standing. In a hybrid media system, social media does not bypass these dynamics but feeds into them — though how, and under what conditions it does so, remains poorly understood. We argue that three dimensions of MPs' social media behavior jointly shape their national news visibility: (i) how much they post, (ii) how locally focused their content is, and (iii) how oriented their engagement is toward national rather than local media outlets. Critically, electoral institutions condition all three: in single-member district plurality systems, personal vote-seeking incentives push MPs toward constituency-targeted communication that is misaligned with national news values, systematically weakening the link between social media activity and national media access. Using error correction models on a panel dataset covering the population of tweets by Danish and UK MPs (2015–2019) and over 750,000 articles from six national newspapers, we find that tweet volume is positively associated with news visibility in both countries, though significantly more so in Denmark. Constituency-targeted social media content and locally-oriented media engagement is inconsequential in Denmark but reduces news visibility in the UK, where electoral incentives systematically push MPs toward communication strategies that work against their national media access.
-        </div>
-      </details>
-    </div>
-
-    <div class="pub">
       <div class="ptitle">Politicizing the “Left Behind”: How Did the Geography of Discontent Become Mainstream Politics?</div>
       <div class="meta">With Carsten Jensen &amp; Henrik Bech Seeberg.</div>
       <details>
@@ -331,17 +334,6 @@
     </div>
 
     <div class="pub">
-      <div class="ptitle">Euroscepticism and EU Support in the 2024 European Parliament Election Campaigns: A Social Media Analysis Using Large Language Models</div>
-      <div class="meta">With Michaela Maier, Aidar Zinnatullin, Felipe Barreto de Souza Martins, Sary Elmansoury, Talisa Schwall, Carlos Jalali, Gabriella Szabó, Alena Pospíšil Macková &amp; Tamara Kunić.</div>
-      <details>
-        <summary></summary>
-        <div class="abstract">
-          The 2024 European Parliament (EP) election was a critical election that took place during the permacrisis of the European Union (EU). This study examines the social media campaigns of political parties before the election. By analysing the content of YouTube and TikTok videos published by parties in six EU countries (Croatia, Czech Republic, Denmark, Germany, Hungary and Portugal) with the help of large language models (LLMs), we investigated the extent to which parties engaged with EU-related issues and which party groups expressed Eurosceptic positions. We found that the Europeanisation of party campaigns was much stronger in 2024 than in earlier elections. Government parties were no longer silent about EU issues but discussed them intensively. EU negativity followed a clear U-shape across ideologies, peaking on the far right but trickling down to the centre-right, employing nationalist framing.
-        </div>
-      </details>
-    </div>
-
-    <div class="pub">
       <div class="ptitle">Their Greatest Hits: How Engagement Informs Political Parties' Election Campaigns</div>
       <div class="meta">With Mathias Bukh Vestergaard.</div>
       <details>
@@ -356,16 +348,16 @@
 
   <!-- ============ MEDIA ============ -->
   <section id="media">
-    <h2>media</h2>
+    <h2>Media</h2>
 
     <!-- ---------- ARTICLES ---------- -->
-    <h3 class="subhead">articles</h3>
+    <h3 class="subhead">Articles</h3>
 
     <div class="pub">
-      <div class="ptitle">"It's about amplifying the message"</div>
+      <div class="ptitle">“It's about amplifying the message”</div>
       <div class="meta">Aarhus BSS</div>
       <div class="plinks">
-        <a href="https://bss.au.dk/en/aarhus-bss-nyheder/show/artikel/its-about-amplifying-the-message" target="_blank" rel="noopener">read</a>
+        <a href="https://bss.au.dk/en/aarhus-bss-nyheder/show/artikel/its-about-amplifying-the-message" target="_blank" rel="noopener">Read</a>
       </div>
     </div>
 
@@ -373,18 +365,18 @@
       <div class="ptitle">Daniel Møller Eriksen vinder pris for bedste artikel (Daniel Møller Eriksen wins best paper award)</div>
       <div class="meta">Aarhus University, Department of Political Science · 2023</div>
       <div class="plinks">
-        <a href="https://ps.medarbejdere.au.dk/interne-nyheder/nyhed/artikel/daniel-moeller-eriksen-vinder-pris-for-bedste-artikel" target="_blank" rel="noopener">read</a>
+        <a href="https://ps.medarbejdere.au.dk/interne-nyheder/nyhed/artikel/daniel-moeller-eriksen-vinder-pris-for-bedste-artikel" target="_blank" rel="noopener">Read</a>
       </div>
     </div>
 
     <!-- ---------- PODCASTS ---------- -->
-    <h3 class="subhead">podcasts</h3>
+    <h3 class="subhead">Podcasts</h3>
 
     <div class="pub">
       <div class="ptitle">#aBitOfCCS on strategic political communication on Twitter</div>
       <div class="meta">What is it about computational communication science? · 2025</div>
       <div class="plinks">
-        <a href="https://podcasts.apple.com/us/podcast/abitofccs-on-strategic-political-communication-on-twitter/id1587936026?i=1000704583058" target="_blank" rel="noopener">listen</a>
+        <a href="https://podcasts.apple.com/us/podcast/abitofccs-on-strategic-political-communication-on-twitter/id1587936026?i=1000704583058" target="_blank" rel="noopener">Listen</a>
       </div>
     </div>
 
@@ -392,7 +384,7 @@
 
   <!-- ============ CONTACT ============ -->
   <section id="contact">
-    <h2>contact</h2>
+    <h2>Contact</h2>
     <p>
       Department of Political Science<br>
       Aarhus University<br>
@@ -401,13 +393,13 @@
 
     <!-- ===== Links — slet dem du ikke bruger ===== -->
     <div class="links">
-      <a href="mailto:dme@ps.au.dk">email</a>
-      <a href="https://bsky.app/profile/daniel-eriksen.bsky.social" target="_blank" rel="noopener">bluesky</a>
-      <a href="https://www.linkedin.com/in/daniel-sandvej-eriksen-3592481a0/" target="_blank" rel="noopener">linkedin</a>
+      <a href="mailto:dme@ps.au.dk">Email</a>
+      <a href="https://bsky.app/profile/daniel-eriksen.bsky.social" target="_blank" rel="noopener">Bluesky</a>
+      <a href="https://www.linkedin.com/in/daniel-sandvej-eriksen-3592481a0/" target="_blank" rel="noopener">LinkedIn</a>
       <!-- Tilføj senere når du har dem:
-      <a href="CV.pdf">cv</a>
-      <a href="https://scholar.google.com/" target="_blank" rel="noopener">scholar</a>
-      <a href="https://orcid.org/" target="_blank" rel="noopener">orcid</a>
+      <a href="CV.pdf">CV</a>
+      <a href="https://scholar.google.com/" target="_blank" rel="noopener">Google Scholar</a>
+      <a href="https://orcid.org/" target="_blank" rel="noopener">ORCID</a>
       -->
     </div>
   </section>
@@ -415,7 +407,7 @@
 </div>
 
 <footer>
-  <span class="prompt">❯</span> © <span id="year"></span> Daniel Sandvej Eriksen
+  © <span id="year"></span> Daniel Sandvej Eriksen
 </footer>
 
 <script>
